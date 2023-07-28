@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.22"
     application
     id ("io.freefair.aspectj.post-compile-weaving") version "8.0.1"
 }
