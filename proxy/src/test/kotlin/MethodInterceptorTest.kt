@@ -7,7 +7,6 @@ import net.sf.cglib.proxy.Enhancer
 import net.sf.cglib.proxy.NoOp
 import org.junit.jupiter.api.Test
 
-
 class MethodInterceptorTest {
     @Test
     fun interceptorTest() {
@@ -24,16 +23,17 @@ class MethodInterceptorTest {
 
     @Test
     fun interceptorWithFilterTest() {
-        val ironManEnhancer = Enhancer()
-        ironManEnhancer.setSuperclass(IronMan::class.java)
-        ironManEnhancer.setCallbackFilter(FlyableCallbackFilter())
-        ironManEnhancer.setCallbacks(
-            arrayOf(
-                FlyInterceptor(),
-                FallInterceptor(),
-                NoOp.INSTANCE // default
+        val ironManEnhancer = Enhancer().apply {
+            setSuperclass(IronMan::class.java)
+            setCallbackFilter(FlyableCallbackFilter())
+            setCallbacks(
+                arrayOf(
+                    FlyInterceptor(),
+                    FallInterceptor(),
+                    NoOp.INSTANCE // default
+                )
             )
-        )
+        }
         val ironMan = ironManEnhancer.create() as IronMan
         println("fly")
         ironMan.fly()

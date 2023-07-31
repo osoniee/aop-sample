@@ -16,8 +16,13 @@ class FooTest {
     fun invokeSelfTransactionTest() = fooService.invokeSelfTransaction()
 
     @Test
-    fun registerTest() = fooService.registerWithTransaction()
+    fun registerTest() {
+        fooService.registerWithTransaction()
+
+    }
 
     @Test
-    fun selfInvokeRegisterTest() = fooService.invokeSelfRegistration()
+    fun selfInvokeRegisterTest() {
+        fooService.invokeSelfRegistration()
+    }
 }

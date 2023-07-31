@@ -19,13 +19,13 @@ class FooTransactionService(private val fooStore: FooStore) {
     @Transactional
     fun registerWithTransaction() {
         log.debug("fun register transaction: {}", TransactionSynchronizationManager.getCurrentTransactionName())
-        fooStore.save(Foo("foo"))
+        fooStore.save(Foo(1))
         throw RuntimeException("ERROR")
     }
 
     fun invokeSelfRegistration() {
         log.debug("fun invokeSelfRegistration transaction: {}", TransactionSynchronizationManager.getCurrentTransactionName())
-        fooStore.save(Foo("bar"))
+        fooStore.save(Foo(2))
         registerWithTransaction()
     }
 }

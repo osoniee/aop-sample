@@ -1,4 +1,4 @@
-package aspectj
+package com.example.aop.spring.aspectj.aspect
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)
