@@ -1,11 +1,14 @@
 package com.example.aop.spring.aspectj
 
+import com.example.aop.spring.aspectj.aspect.LogAspect
 import org.springframework.context.annotation.*
-import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver
-import org.springframework.instrument.classloading.LoadTimeWeaver
+import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @Configuration
-class LTWConfig: LoadTimeWeavingConfigurer {
-    override fun getLoadTimeWeaver(): LoadTimeWeaver = InstrumentationLoadTimeWeaver()
-
+@EnableAspectJAutoProxy
+@EnableLoadTimeWeaving
+@EnableTransactionManagement(mode = AdviceMode.ASPECTJ)
+class LTWConfig {
+    @Bean
+    fun aspect() = LogAspect()
 }

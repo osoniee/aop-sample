@@ -25,10 +25,7 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
 
     implementation ("org.springframework:spring-instrument")
-    runtimeOnly("org.aspectj:aspectjweaver:1.9.19")
-    implementation("org.springframework:spring-context-support:6.0.11")
     implementation("com.querydsl:querydsl-jpa:5.0.0")
-    implementation("io.projectreactor:reactor-core:3.5.8")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -49,6 +46,7 @@ fun aspectjLibPath() = sourceSets.getByName("main").compileClasspath.find { it.n
 tasks.test {
     doFirst {
         println(instrumentLibPath())
+        println(aspectjLibPath())
         jvmArgs(
             "-javaagent:${instrumentLibPath()}",
             "-javaagent:${aspectjLibPath()}",
@@ -60,6 +58,7 @@ tasks.test {
 tasks.bootRun {
     doFirst {
         println(instrumentLibPath())
+        println(aspectjLibPath())
         jvmArgs(
             "-javaagent:${instrumentLibPath()}",
             "-javaagent:${aspectjLibPath()}",

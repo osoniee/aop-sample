@@ -1,11 +1,8 @@
 package com.example.aop.spring.aspectj.aspect
 
-import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.*
-import org.springframework.stereotype.Component
 
 @Aspect
-@Component
 open class LogAspect {
     @Pointcut("@annotation(logged)")
     fun loggedPointCut(logged: Logged?) {}
