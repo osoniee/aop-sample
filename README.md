@@ -710,10 +710,6 @@ Spring은 AspectJ LTW를 transaction 이외에도 Bean injection(@EnableSpringCo
 </aspects>
 ```
 
-# 맺음말
-
-사실 현재 프로젝트에서 AOP를 적용해 본 건 DTO의 상태를 동적으로 추적하기 위함이었다. 하지만 이는 AOP의 본래 용도와는 상당히 거리가 있어, 이를 만회하고자 이 글을 작성하게 되었다. Spring에서 AOP는 중요한 핵심 기능 및 관심사 중 하나이므로, Spring을 사용하여 개발한다면 AOP와 proxy, IOC에 대해 어느 정도 알고 개발하는 게 좋아 보인다.
-
 # 참고한 글
 
 [https://docs.spring.io/spring-framework/reference/core/aop.html](https://docs.spring.io/spring-framework/reference/core/aop.html)
