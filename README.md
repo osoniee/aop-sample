@@ -202,7 +202,7 @@ import net.sf.cglib.proxy.Enhancer;
 import org.junit.jupiter.api.Test;
 
 class CGLibTest {
-	@Test
+  @Test
   void invocationHandlerTest() {
     Enhancer ironManEnhancer = new Enhancer(); // Enhancer는 proxy 객체이다.
     ironManEnhancer.setSuperclass(IronMan.class);
@@ -331,7 +331,7 @@ class FallInterceptor: MethodInterceptor {
 테스트:
 
 ```kotlin
-		@Test
+    @Test
     fun interceptorWithFilterTest() {
         val ironManEnhancer = Enhancer()
         ironManEnhancer.setSuperclass(IronMan::class.java)
@@ -587,12 +587,12 @@ Spring AOP는 기본적으로 proxy를 사용한 RTW방식이다. Spring은 이�
 class FooTransactionService(private val fooStore: FooStore) {
     private val log = LoggerFactory.getLogger(this::class.java)
 
-		fun invokeSelfRegistration() {
+    fun invokeSelfRegistration() {
         log.debug("fun invokeSelfRegistration transaction: {}", TransactionSynchronizationManager.getCurrentTransactionName())
         fooStore.save(Foo(2))
         registerWithTransaction()
     }
-		@Transactional
+    @Transactional
     fun registerWithTransaction() {
         log.debug("fun register transaction: {}", TransactionSynchronizationManager.getCurrentTransactionName())
         fooStore.save(Foo(1))
@@ -646,20 +646,22 @@ CGLib의 proxy는 기술적으로는 이를 해결할 수 있어 보인다. 하�
    Self-invocation 상황에서 자기 자신의 함수가 아닌 proxy 객체의 함수를 부른다.
 
     ```kotlin
-    		@Autowired private lateinit var fooService: FooService;
+    ...
+        @Autowired private lateinit var fooService: FooService;
     
-    		fun invokeSelfRegistration() {
+        fun invokeSelfRegistration() {
             log.debug("fun invokeSelfRegistration transaction: {}", TransactionSynchronizationManager.getCurrentTransactionName())
             fooStore.save(Foo(2))
             fooService.registerWithTransaction()
         }
     
-    		@Transactional
+        @Transactional
         fun registerWithTransaction() {
             log.debug("fun register transaction: {}", TransactionSynchronizationManager.getCurrentTransactionName())
             fooStore.save(Foo(1))
             throw RuntimeException("ERROR")
         }
+    ...
     ```
 
    이러면 의도한 바대로 동작한다. 하지만 지금 당신이 떠올렸듯이 아름답지 못하다.
